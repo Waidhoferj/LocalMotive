@@ -11,6 +11,7 @@ import amazonparser
 import json
 
 def Scrape(url):
+    print("check")
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
     # businessPage is the html from URL
     businessPage = requests.get(url, headers = headers)
@@ -19,13 +20,12 @@ def Scrape(url):
     title = soup.find('span', {'class':'a-color-state a-text-bold'}).get_text()
     i = 0
     # products is the data for the product
-    print("check")
     products = []
     for links in soup.find_all('li'):
         try:
             print("check2")
             a = links.find('a')
-            if (i <= 24):
+            if (i <= 21):
                 print("check3")
                 urlLink = a.get('href')
                 temp = amazonparser.AmzonParser(urlLink, title)

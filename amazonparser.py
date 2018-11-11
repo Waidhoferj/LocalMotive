@@ -34,11 +34,11 @@ def AmzonParser(url, title):
 			if page.status_code!=200:
 				raise ValueError('captha')
 			data = {
-					'productName':str(NAME),
-					'businessName':str(title),
+					'productName':NAME,
+					'businessName':title,
 					'location':('"", ""'),
-                                        'price':str(SALE_PRICE),
-					'link':str(url),
+                                        'price':SALE_PRICE,
+					'link':url,
 					}
 
 			return data
