@@ -36,7 +36,7 @@ def AmzonParser(url, title):
 			data = {
 					'productName':NAME,
 					'businessName':title,
-					'location':('"", ""'),
+					'location':[-1, -1],
                                         'price':SALE_PRICE,
 					'link':url,
 					}

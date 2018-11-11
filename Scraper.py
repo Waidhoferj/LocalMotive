@@ -1,3 +1,4 @@
+
 """File takes an inputted Amazon business account link, scrapes the website for the products
 on the website, then returns a json file with the product names, the price, and the links"""
 
@@ -33,15 +34,14 @@ def Scrape(url):
                 i = i + 1
         except:
             pass
-    with open('data.json', 'w') as outfile:
-        json.dump(products, outfile)
     try:
         nextPage = soup.find('a', {'title':'Next Page'})
         print("Passed")
         # products.append(Scrape('https://www.amazon.com' + nextPage.get('href')))
         Scrape('https://www.amazon.com' + nextPage.get('href'))
     except:
-        pass
+        with open('data.json', 'w') as outfile:
+            json.dump(products, outfile)
     # return products
 
 # Using example URL for now, will have inputted URL functionality later
