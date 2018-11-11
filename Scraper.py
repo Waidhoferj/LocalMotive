@@ -16,7 +16,7 @@ def Scrape(url):
     businessPage = requests.get(url, headers = headers)
     # soup is the parsed version of BusinessPage using BeautifulSoup
     soup = BeautifulSoup(businessPage.content, "lxml")
-    title = soup.find('span', {'class':'a-color-state a-text-bold'})
+    title = soup.find('span', {'class':'a-color-state a-text-bold'}).get_text()
     i = 0
     # products is the data for the product
     print("check")
@@ -34,8 +34,7 @@ def Scrape(url):
         except:
             pass
     with open('data.json', 'w') as outfile:
-        tempProduct = json.dumps(products)
-        json.dump(tempProduct, outfile)
+        json.dump(products, outfile)
     try:
         nextPage = soup.find('a', {'title':'Next Page'})
         print("Passed")
