@@ -35,13 +35,21 @@ def Scrape(url):
         except:
             pass
     try:
+        with open('data.json') as infile:
+            data = json.load(infile)
+        data.append(products)
+        print("check4")
+    except:
+        data = products
+    with open('data.json', 'w') as outfile:
+        json.dump(data, outfile)
+    try:
         nextPage = soup.find('a', {'title':'Next Page'})
         print("Passed")
         # products.append(Scrape('https://www.amazon.com' + nextPage.get('href')))
         Scrape('https://www.amazon.com' + nextPage.get('href'))
     except:
-        with open('data.json', 'w') as outfile:
-            json.dump(products, outfile)
+        pass
     # return products
 
 # Using example URL for now, will have inputted URL functionality later
